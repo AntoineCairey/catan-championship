@@ -79,7 +79,7 @@ function App() {
   return (
     <>
       <header>
-        <img className="logo" src="src/assets/catan-white.svg" alt="catan" />
+        <img className="logo" src="./src/assets/catan-white.svg" alt="catan" />
         <h1>Championship</h1>
       </header>
       <main>
