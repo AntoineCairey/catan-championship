@@ -1,0 +1,33 @@
+[
+  {
+    "date": "2023-10-05",
+    "scores": {
+      "Coco": 10,
+      "Gio": 8,
+      "MC": 8,
+      "Etienne": 5,
+      "Antoine": 5
+    }
+  },
+  {
+    "date": "2023-10-26",
+    "scores": {
+      "Etienne": 10,
+      "Coco": 7,
+      "Gio": 7,
+      "Juliette": 5,
+      "Antoine": 4
+    }
+  },
+  {
+    "date": "2023-10-30",
+    "scores": {
+      "Coco": 10,
+      "Antoine": 9,
+      "MC": 9,
+      "Gio": 7,
+      "Juliette": 6,
+      "Etienne": 6
+    }
+  }
+]
