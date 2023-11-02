@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 import gameData from "./data.json";
+import logo from "./assets/catan-white.svg";
 
 const getGameScore = (game) => {
   const scores = Object.entries(game.scores);
@@ -79,7 +80,7 @@ function App() {
   return (
     <>
       <header>
-        <img className="logo" src="./src/assets/catan-white.svg" alt="catan" />
+        <img className="logo" src={logo} alt="catan" />
         <h1>Championship</h1>
       </header>
       <main>
