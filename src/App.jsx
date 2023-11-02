@@ -79,27 +79,29 @@ console.log(getRanking(gameData));
 function App() {
   return (
     <>
-      <header>
-        <img className="logo" src={logo} alt="catan" />
-        <h1>Championship</h1>
-      </header>
-      <main>
-        <Outlet />
-      </main>
-      <nav>
-        <Link to="/" className="menu-item">
-          <span className="material-symbols-outlined">trophy</span>
-          <span>Classement</span>
-        </Link>
-        <Link to="/games" className="menu-item">
-          <span className="material-symbols-outlined">strategy</span>
-          <span>Parties</span>
-        </Link>
-        <Link to="/rules" className="menu-item">
-          <span className="material-symbols-outlined">menu_book</span>
-          <span>Règles</span>
-        </Link>
-      </nav>
+      <div className="container">
+        <header>
+          <img className="logo" src={logo} alt="catan" />
+          <h1>Championship</h1>
+        </header>
+        <main>
+          <Outlet />
+        </main>
+        <nav>
+          <Link to="/" className="menu-item">
+            <span className="material-symbols-outlined">trophy</span>
+            <span>Classement</span>
+          </Link>
+          <Link to="/games" className="menu-item">
+            <span className="material-symbols-outlined">strategy</span>
+            <span>Parties</span>
+          </Link>
+          <Link to="/rules" className="menu-item">
+            <span className="material-symbols-outlined">menu_book</span>
+            <span>Règles</span>
+          </Link>
+        </nav>
+      </div>
     </>
   );
 }
