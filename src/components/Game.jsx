@@ -37,8 +37,6 @@ function Game({ game }) {
     }
   });
 
-  console.log(scores);
-
   const date = new Date(game.date);
   const options = {
     day: "numeric",

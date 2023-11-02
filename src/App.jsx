@@ -65,16 +65,12 @@ export const getRanking = (gameData) => {
       }
     });
   });
-  console.log(ranking);
   const sortedRanking = Object.entries(ranking);
   // tri alphabétique puis par score
   sortedRanking.sort((a, b) => a[0].localeCompare(b[0]));
   sortedRanking.sort((a, b) => b[1].points - a[1].points);
   return sortedRanking;
 };
-
-console.log(getAllScores(gameData));
-console.log(getRanking(gameData));
 
 function App() {
   return (
