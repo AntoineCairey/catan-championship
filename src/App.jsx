@@ -3,45 +3,58 @@ import "./App.css";
 import gameData from "./data.json";
 import logo from "./assets/catan-white.svg";
 
-const getGameScore = (game) => {
-  const scores = Object.entries(game.scores);
-  // tri alphabétique puis par score
-  scores.sort((a, b) => a[0].localeCompare(b[0]));
-  scores.sort((a, b) => b[1] - a[1]);
+export const getGameScore = (game) => {
+  // création d'un tableau d'objets
+  const gameScore = [];
+  for (const player in game.scores) {
+    gameScore.push({
+      name: player,
+      score: game.scores[player],
+      bonus: "",
+      general: 0,
+    });
+  }
 
-  scores.forEach((player) => player.push(0, ""));
+  // tri alphabétique puis par score
+  gameScore.sort((a, b) => a.name.localeCompare(b.name));
+  gameScore.sort((a, b) => b.score - a.score);
 
   // 4 points au 1er
-  scores[0][2] += 4;
-  scores[0][3] += "🥇";
+  gameScore[0].bonus += "🥇";
+  gameScore[0].general += 4;
 
-  // 1 point au 2e (attention il peut y avoir des ex aequo)
-  scores.forEach((player) => {
-    if (player[1] === scores[1][1]) {
-      player[2] += 1;
-      player[3] += "🥈";
+  // 1 point au 2e (attention il peut y avoir des 2e ex aequo)
+  gameScore.forEach((player) => {
+    if (player.score === gameScore[1].score) {
+      player.bonus += "🥈";
+      player.general += 1;
     }
   });
 
-  // 0.5 point au 3e (si pas de 2e ex aequo)
-  if (scores[2][2] === 0) {
-    scores[2][2] += 0.5;
-    scores[2][3] += "🥉";
+  // 0.5 point au 3e (attention il peut y avoir 0, 1 ou plusieurs 3e)
+  if (gameScore[2].general === 0) {
+    gameScore.forEach((player) => {
+      if (player.score === gameScore[2].score) {
+        player.bonus += "🥉";
+        player.general += 0.5;
+      }
+    });
   }
 
-  // bonus offensif
-  if (scores[1][1] <= 7) {
-    scores[0][2] += 1;
-    scores[0][3] += " 🗡️";
+  // bonus offensif 1 point
+  if (gameScore[1].score <= 7) {
+    gameScore[0].bonus += " 🗡️";
+    gameScore[0].general += 1;
   }
-  // bonus défensif
-  scores.forEach((player) => {
-    if (player[1] === 9) {
-      player[2] += 0.5;
-      player[3] += " 🛡️";
+
+  // bonus défensif 0.5 point
+  gameScore.forEach((player) => {
+    if (player.score === 9) {
+      player.bonus += " 🛡️";
+      player.general += 0.5;
     }
   });
-  return scores;
+  return gameScore;
 };
 
 const getAllScores = (gameData) => {
@@ -55,22 +68,38 @@ export const getRanking = (gameData) => {
   const ranking = {};
   allScores.forEach((game) => {
     game.scores.forEach((player) => {
-      if (ranking[player[0]]) {
-        ranking[player[0]].points += player[2];
-        ranking[player[0]].games += 1;
+      if (ranking[player.name]) {
+        ranking[player.name].general += player.general;
+        ranking[player.name].games += 1;
+        ranking[player.name].total += player.score;
       } else {
-        ranking[player[0]] = {};
-        ranking[player[0]].points = player[2];
-        ranking[player[0]].games = 1;
+        ranking[player.name] = {};
+        ranking[player.name].general = player.general;
+        ranking[player.name].games = 1;
+        ranking[player.name].total = player.score;
       }
     });
   });
-  const sortedRanking = Object.entries(ranking);
+
+  const test = [];
+  for (const player in ranking) {
+    test.push({
+      name: player,
+      general: ranking[player].general,
+      games: ranking[player].games,
+      total: ranking[player].total,
+    });
+  }
+
   // tri alphabétique puis par score
-  sortedRanking.sort((a, b) => a[0].localeCompare(b[0]));
-  sortedRanking.sort((a, b) => b[1].points - a[1].points);
-  return sortedRanking;
+  test.sort((a, b) => a.name.localeCompare(b.name));
+  test.sort((a, b) => b.general - a.general);
+  console.log(test);
+  return test;
 };
+
+console.log(getAllScores(gameData));
+console.log(getRanking(gameData));
 
 function App() {
   return (

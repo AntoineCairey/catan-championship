@@ -33,12 +33,12 @@
   {
     "date": "2023-11-06",
     "scores": {
-      "Coco": 4,
-      "Antoine": 4,
-      "MC": 5,
-      "Gio": 10,
       "Juliette": 6,
-      "Etienne": 5
+      "Etienne": 5,
+      "Gio": 10,
+      "MC": 5,
+      "Antoine": 4,
+      "Coco": 4
     }
   }
 ]
