@@ -93,7 +93,7 @@ export const getRanking = (gameData) => {
 
   // tri alphabétique puis par score
   test.sort((a, b) => a.name.localeCompare(b.name));
-  test.sort((a, b) => b.general - a.general);
+  test.sort((a, b) => (b.total / b.games) - (a.total / a.games));
   console.log(test);
   return test;
 };
