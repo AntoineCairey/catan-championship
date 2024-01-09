@@ -122,5 +122,16 @@
       "Coco": 12,
       "MC": 5
     }
+  },
+  {
+    "date": "2024-01-08",
+    "scores": {
+      "Etienne": 7,
+      "Antoine": 6,
+      "Coco": 6,
+      "MC": 10,
+      "Gio": 5,
+      "Juliette": 3
+    }
   }
 ]
