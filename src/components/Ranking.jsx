@@ -23,7 +23,7 @@ function Ranking() {
             {ranking.map((player) => (
               <tr key={player.name}>
                 <td>{player.name}</td>
-                <td>{+(player.total / player.games).toFixed(2)}</td>
+                <td>{+(player.total / player.games).toFixed(3)}</td>
                 <td>{player.total}</td>
                 <td>{player.games}</td>
                 {/* <td>{player.general}</td>
